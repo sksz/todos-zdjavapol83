@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <span>
+        <mat-form-field appearance="legacy">
+            <mat-label>Tile</mat-label>
+            <input
+                matInput
+                placeholder="Todo title"
+                [(ngModel)]="title"
+                (keydown)="onKeydown($event)"
+            >
+        </mat-form-field>
+    </span>
+    <span class="spacer"></span>
+    <span>
+        <button
+            mat-raised-button
+            (click)="onAddTodo()"
+            color="primary"
+            aria-label="Todo delete button"
+        >
+        Add
+        </button>
+    </span>
+</mat-toolbar>

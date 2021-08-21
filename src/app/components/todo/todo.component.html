@@ -1,0 +1,25 @@
+<div [ngClass]="setClasses()">
+    <span>
+        <mat-checkbox
+            [checked]="todo.completed"
+            (change)="onToggle(todo)"
+            color="primary"
+        >
+        </mat-checkbox>
+    </span>
+    <span>
+        {{ todo.title }}
+    </span>
+    <span class="spacer">
+    </span>
+    <span class="del">
+        <button
+            mat-icon-button
+            (click)="onDelete(todo)"
+            color="warn"
+            aria-label="Todo delete button"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+    </span>
+</div>

@@ -1,0 +1,14 @@
+.del {
+    float: right;
+    vertical-align: middle;
+}
+
+.todo {
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px #ccc dotted;
+}
+
+.is-completed {
+    text-decoration: line-through;
+}
