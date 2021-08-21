@@ -15,40 +15,34 @@ export class ContentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.todos = this.todoService.todos;
+    this.todoService.getTodos().subscribe(
+      (todos: Todo[]) => {
+        this.todos = todos;
+      }
+    );
   }
 
   deleteTodo(todo: Todo): void {
-    this.todoService.todos = this.todoService.todos.filter(
-      (todoElement: Todo) => {
-        console.log(todo.id, todoElement.id);
-        return todo.id !== todoElement.id;
+    this.todoService.deleteTodo(todo).subscribe(
+      () => {
+        this.todos = this.todos.filter(
+          (todoElement: Todo) => {
+            return todo.id !== todoElement.id;
+          }
+        );
       }
     );
-
-    this.todos = this.todoService.todos;
   }
 
   toggleTodo(todo: Todo): void {
-    this.todoService.todos.forEach((todoElement: Todo) => {
-      if (todo.id === todoElement.id) {
-        todoElement.completed = todo.completed;
-      }
-    });
+    this.todoService.modifyTodo(todo);
   }
 
   addTodo(todo: Todo): void {
-    let lastId: number = 0;
-
-    if (this.todoService.todos.length) {
-      lastId =
-        this.todoService
-        .todos[this.todoService.todos.length - 1]
-        .id ?? 1;
-    }
-
-    todo.id = lastId + 1;
-
-    this.todoService.todos.push(todo);
+    this.todoService.addTodo(todo).subscribe(
+      (todo: Todo) => {
+        this.todos.push(todo);
+      }
+    );
   }
 }
